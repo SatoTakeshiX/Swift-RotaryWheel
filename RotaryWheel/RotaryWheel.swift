@@ -22,9 +22,9 @@ class RotaryWheel: UIControl {
     let maxAlphavalue: CGFloat = 1.0
 
     init(frame: CGRect, delegate: RotaryProtocol, section: Int) {
-        self.delegate = delegate
-        self.numberOfSections = section
         self.currentValue = 0
+        self.numberOfSections = section
+        self.delegate = delegate
         super.init(frame: frame)
         drawWeel()
     }
@@ -40,7 +40,8 @@ class RotaryWheel: UIControl {
         for i in 0 ..< numberOfSections {
             let segumentImage = UIImageView(image: UIImage(named: "segment"))
             segumentImage.layer.anchorPoint = CGPoint(x: 1.0, y: 0.5)
-            segumentImage.layer.position = CGPoint(x: container.bounds.width/2.0 - container.frame.origin.x, y: container.bounds.height/2.0 - container.frame.origin.y)
+            segumentImage.layer.position = CGPoint(x: container.bounds.width/2.0 - container.frame.origin.x,
+                                                   y: container.bounds.height/2.0 - container.frame.origin.y)
             segumentImage.transform = CGAffineTransform(rotationAngle: CGFloat(angleSize) * CGFloat(i))
             segumentImage.alpha = minAlphavalue
             segumentImage.tag = i
@@ -76,8 +77,6 @@ class RotaryWheel: UIControl {
         }
 
         delegate.wheelDidChangeValue(newValue: getCloveName(position: currentValue))
-
-
     }
 
     func getCloveByValue(value: Int) -> UIImageView? {
@@ -93,7 +92,7 @@ class RotaryWheel: UIControl {
 
     func buildClovesEven() {
         // これはなんの値だろう？
-        let fanWidth = .pi*2 / Double(numberOfSections)
+        let fanWidth = .pi * 2 / Double(numberOfSections)
         var mid = 0.0
 
         for i in 0 ..< numberOfSections {
@@ -110,7 +109,6 @@ class RotaryWheel: UIControl {
             }
 
             mid -= fanWidth
-            clove.midValue = Float(mid)
             print("cl is \(clove)")
 
             cloves.append(clove)
@@ -163,7 +161,7 @@ class RotaryWheel: UIControl {
 
         let dx = touchPoint.x - container.center.x
         let dy = touchPoint.y - container.center.y
-        deltaAngle = atan2(dx, dy) //タンジェントなんだ。
+        deltaAngle = atan2(dy, dx) //タンジェントなんだ。
 
         startTransform = container.transform
 
@@ -192,11 +190,11 @@ class RotaryWheel: UIControl {
 
         let dx = point.x - container.center.x
         let dy = point.y - container.center.y
-        let angle = atan2(dx, dy)
+        let angle = atan2(dy, dx)
 
         let angleDifference = deltaAngle - angle
 
-        container.transform = startTransform?.rotated(by: angleDifference) ?? CGAffineTransform.identity
+        container.transform = startTransform?.rotated(by: -angleDifference) ?? CGAffineTransform.identity
 
         return true
     }
