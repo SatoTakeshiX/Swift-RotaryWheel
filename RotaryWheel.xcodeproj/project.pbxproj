@@ -14,6 +14,9 @@
 		3068E89121B65E41002F1277 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3068E88F21B65E41002F1277 /* LaunchScreen.storyboard */; };
 		3068E89C21B65E42002F1277 /* RotaryWheelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068E89B21B65E42002F1277 /* RotaryWheelTests.swift */; };
 		3068E8A721B65E42002F1277 /* RotaryWheelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068E8A621B65E42002F1277 /* RotaryWheelUITests.swift */; };
+		3068E8B521B65F09002F1277 /* RotaryWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068E8B421B65F09002F1277 /* RotaryWheel.swift */; };
+		3068E8B721B65F35002F1277 /* RotaryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068E8B621B65F35002F1277 /* RotaryProtocol.swift */; };
+		3068E8B921B77026002F1277 /* Clove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068E8B821B77026002F1277 /* Clove.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		3068E8A221B65E42002F1277 /* RotaryWheelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotaryWheelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3068E8A621B65E42002F1277 /* RotaryWheelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaryWheelUITests.swift; sourceTree = "<group>"; };
 		3068E8A821B65E42002F1277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3068E8B421B65F09002F1277 /* RotaryWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaryWheel.swift; sourceTree = "<group>"; };
+		3068E8B621B65F35002F1277 /* RotaryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaryProtocol.swift; sourceTree = "<group>"; };
+		3068E8B821B77026002F1277 /* Clove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clove.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,9 @@
 				3068E88D21B65E41002F1277 /* Assets.xcassets */,
 				3068E88F21B65E41002F1277 /* LaunchScreen.storyboard */,
 				3068E89221B65E41002F1277 /* Info.plist */,
+				3068E8B421B65F09002F1277 /* RotaryWheel.swift */,
+				3068E8B621B65F35002F1277 /* RotaryProtocol.swift */,
+				3068E8B821B77026002F1277 /* Clove.swift */,
 			);
 			path = RotaryWheel;
 			sourceTree = "<group>";
@@ -257,7 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3068E88921B65E3D002F1277 /* ViewController.swift in Sources */,
+				3068E8B921B77026002F1277 /* Clove.swift in Sources */,
 				3068E88721B65E3D002F1277 /* AppDelegate.swift in Sources */,
+				3068E8B721B65F35002F1277 /* RotaryProtocol.swift in Sources */,
+				3068E8B521B65F09002F1277 /* RotaryWheel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
