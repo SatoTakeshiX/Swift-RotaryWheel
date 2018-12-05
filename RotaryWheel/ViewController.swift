@@ -8,11 +8,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, RotaryProtocol {
+
+    private var valueLabel: UILabel = UILabel(frame: CGRect(x: 100, y: 350, width: 120, height: 30))
+
+    func wheelDidChangeValue(newValue: String) {
+        valueLabel.text = newValue
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        valueLabel.textAlignment = .center
+        valueLabel.backgroundColor = UIColor.gray
+        self.view.addSubview(valueLabel)
+
+        let wheel = RotaryWheel(frame: CGRect(x: 0, y: 0, width: 200, height: 200),
+                                delegate: self,
+                                section: 8)
+
+        wheel.center = CGPoint(x: 160, y: 200)
+        self.view.addSubview(wheel)
     }
 
 

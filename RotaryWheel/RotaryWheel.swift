@@ -69,6 +69,14 @@ class RotaryWheel: UIControl {
         mask.center = CGPoint(x: mask.center.x, y: mask.center.y + 3)
         self.addSubview(mask)
 
+        if (numberOfSections % 2 == 0) {
+            buildClovesEven()
+        } else {
+            buildClovesOdd()
+        }
+
+        delegate.wheelDidChangeValue(newValue: getCloveName(position: currentValue))
+
 
     }
 
@@ -102,6 +110,7 @@ class RotaryWheel: UIControl {
             }
 
             mid -= fanWidth
+            clove.midValue = Float(mid)
             print("cl is \(clove)")
 
             cloves.append(clove)
@@ -114,16 +123,18 @@ class RotaryWheel: UIControl {
         var mid = 0.0
 
         for i in 0 ..< numberOfSections {
-            let clove = Clove(minValue: Float(mid - (fanWidth/2)),
+            var clove = Clove(minValue: Float(mid - (fanWidth/2)),
                               maxValue: Float(mid + (fanWidth/2)),
                               midValue: Float(mid),
                               value: i)
 
             mid -= fanWidth
+            clove.midValue = Float(mid)
 
             if (mid < -.pi) {
                 mid = -mid
                 mid -= fanWidth //反映してないけど大丈夫？
+                clove.midValue = Float(mid)
             }
 
             print("cl is \(clove)")
@@ -196,18 +207,22 @@ class RotaryWheel: UIControl {
         var newVal = 0.0
 
         for clove in cloves {
-            if (CGFloat(clove.maxValue) > radians || CGFloat(clove.minValue) < radians) {
+            if (CGFloat(clove.minValue) > 0 && CGFloat(clove.maxValue) < 0) { // anomalous case 例外ケース
 
-                if radians > 0 {  // we are in the positive quadrant +の四分円にいる
+                if (CGFloat(clove.maxValue) > radians || CGFloat(clove.minValue) < radians) {
+                    if radians > 0 {  // we are in the positive quadrant +の四分円にいる
 
-                    newVal = Double(radians - .pi)
+                        newVal = Double(radians - .pi)
 
-                } else {// we are in the negative one -の四分円にいる
-                    newVal = Double((radians + .pi))
+                    } else {// we are in the negative one -の四分円にいる
+                        newVal = Double((radians + .pi))
+                    }
+
+                    currentValue = clove.value
                 }
 
-                currentValue = clove.value
             } else if (radians > CGFloat(clove.minValue) && radians < CGFloat(clove.maxValue)) {
+
                 newVal = Double(radians - CGFloat(clove.midValue))
                 currentValue = clove.value
             }
@@ -215,7 +230,7 @@ class RotaryWheel: UIControl {
 
         //アニメーション
         UIView.beginAnimations(nil, context: nil)
-        UIView.setAnimationDuration(2.0)
+        UIView.setAnimationDuration(0.2)
 
         let t = container.transform.rotated(by: CGFloat(-newVal))
         container.transform = t
